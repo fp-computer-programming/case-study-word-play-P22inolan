@@ -4,9 +4,9 @@ wordfile = open("/Users/p22inolan/Desktop/case studies/case-study-word-play-P22i
 without = open("/Users/p22inolan/Desktop/case studies/case-study-word-play-P22inolan/words_without_e.txt", "a")
 
 def no_e(words):
+    totalcount = 0
+    nocount = 0
     while True:
-        totalcount = 0
-        nocount = 0
         line = words.readline()
         if "e" not in line:
             without.write(line)
@@ -14,8 +14,12 @@ def no_e(words):
         elif "e" in line:
             nocount += 1
             totalcount += 1
-        elif len(line) == 0:
-            print("{0} % of the words contain the letter e.".format((nocount/totalcount) * 100))
+        if len(line) == 0:
             break
+    percentage = (nocount/totalcount) * 100
+    return "{0} percent of the words do not contain e.".format(percentage)
+
 
 print(no_e(wordfile))
+wordfile.close()
+without.close()
